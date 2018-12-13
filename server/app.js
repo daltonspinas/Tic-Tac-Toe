@@ -11,4 +11,4 @@ app.get('*', function(req, res){
   res.sendFile(path.join(__dirname, '..', 'public', '/index.html'));
 });
 
-io.on('connection', (client) => console.log(client, client.id));
+ io.on('connection', (client) => console.log(client.id));

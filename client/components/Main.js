@@ -6,9 +6,11 @@ export default class Main extends Component {
     return (
       <div>
         <table>
+        <tbody>
           <tr>
             <td>lalala</td>
           </tr>
+        </tbody>
         </table>
       </div>
     );

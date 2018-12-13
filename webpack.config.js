@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
-  entry: ['babel-polyfill', './server/app.js'],
+  entry: ['babel-polyfill', './client'],
   output: {
     path: __dirname,
     filename: './public/bundle.js'
@@ -11,7 +11,8 @@ module.exports = {
     uws: "uws"
   },
   node: {
-    fs: 'empty'
+    fs: 'empty',
+    net: 'empty'
   },
   context: __dirname,
   devtool: 'source-map',
