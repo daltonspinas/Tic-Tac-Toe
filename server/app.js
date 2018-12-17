@@ -13,9 +13,19 @@ app.get('*', function(req, res){
 
 
 let playerArray = [];
+let activePlayer = true;
+
+function toggleTurn () {
+  if(activePlayer){
+    activePlayer = false;
+  }
+  else {
+    activePlayer = true;
+  }
+}
+
 
  io.on('connection', (client) => {
-   console.log(client.id)
    playerArray.push(client.id)
   console.log(playerArray)
    if(playerArray.length === 1){
@@ -23,12 +33,19 @@ let playerArray = [];
    }
    else if(playerArray.length === 2){
      client.emit('player-two')
-      io.emit('game-start', playerArray[0])
    }
 
+   client.on('turn-change', (gameState) => {
+    if(activePlayer){
+      io.emit('player-one-turn', gameState)
+    }
+    else{
+      io.emit('player-two-turn', gameState)
+    }
+    toggleTurn()
+   })
 
    client.on('disconnect', () => {
-    console.log('disconnected')
     playerArray = [];
   })
  });

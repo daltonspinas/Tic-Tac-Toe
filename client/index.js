@@ -23,21 +23,6 @@ socket.on('player-two', () => {
   )
 })
 
-socket.on('game-start', id => {
-  console.log(id)
-  if(socket.id === id){
-    ReactDOM.render(
-      <h3>it is your turn</h3>
-    ),
-    document.getElementById('player-turn')
-  }
-  else{
-    ReactDOM.render(
-      <h3>it is the other player's turn</h3>
-      ),
-      document.getElementById('player-turn')
-  }
-})
 
 ReactDOM.render(
       <Main />,
